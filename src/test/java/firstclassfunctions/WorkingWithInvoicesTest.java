@@ -12,7 +12,7 @@ import static org.hamcrest.core.Is.is;
 /**
  * Created by raoul-gabrielurma on 09/08/2014.
  */
-public class WorkingWithInvoices {
+public class WorkingWithInvoicesTest {
 
     private final Invoice appleInvoice = new Invoice(1, "DesignConsulting", Invoice.Customer.APPLE);
     private final Invoice facebookInvoice1 = new Invoice(4, "JavascriptTraining", Invoice.Customer.FACEBOOK);
