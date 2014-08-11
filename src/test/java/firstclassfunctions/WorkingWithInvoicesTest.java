@@ -16,6 +16,7 @@ public class WorkingWithInvoicesTest {
     private final Invoice facebookInvoice1 = new Invoice(4, "JavascriptTraining", Invoice.Customer.FACEBOOK);
     private final Invoice oracleInvoice = new Invoice(10, "Java8Training", Invoice.Customer.ORACLE);
     private final Invoice facebookInvoice2 = new Invoice(12, "PenTesting", Invoice.Customer.FACEBOOK);
+
     private List<Invoice> invoices = Arrays.asList(
             appleInvoice,
             facebookInvoice1,
@@ -68,7 +69,6 @@ public class WorkingWithInvoicesTest {
         assertThat(trainingInvoices, is(Arrays.asList(facebookInvoice1,
                 oracleInvoice)));
     }
-
 
     private List<Invoice> filterInvoicesEndingWith(List<Invoice> invoices, String suffix) {
         List<Invoice> result = new ArrayList<>();
