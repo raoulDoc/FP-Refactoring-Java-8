@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import static firstclassfunctions.Invoice.Customer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -24,15 +25,15 @@ public class WorkingWithInvoicesTest {
 
     // Step 1
     @Test
-    public void testFilterInvoicesFromOracle(){
+    public void testFilterInvoicesFromOracle() {
         List<Invoice> result = filterInvoicesFromOracle(invoices);
         assertThat(result, is(Arrays.asList(oracleInvoice)));
     }
 
-    private List<Invoice> filterInvoicesFromOracle(List<Invoice> invoices){
+    private List<Invoice> filterInvoicesFromOracle(List<Invoice> invoices) {
         List<Invoice> result = new ArrayList<>();
-        for(Invoice invoice: invoices){
-            if(invoice.getCustomer() == Invoice.Customer.ORACLE){
+        for (Invoice invoice : invoices) {
+            if (invoice.getCustomer() == Invoice.Customer.ORACLE) {
                 result.add(invoice);
             }
         }
@@ -41,7 +42,7 @@ public class WorkingWithInvoicesTest {
 
     // Step 2a
     @Test
-    public void testFilterInvoicesFromCustomer(){
+    public void testFilterInvoicesFromCustomer() {
         List<Invoice> appleInvoices = filterInvoicesFromCustomer(invoices, Customer.APPLE);
         assertThat(appleInvoices, is(Arrays.asList(appleInvoice)));
 
@@ -50,10 +51,10 @@ public class WorkingWithInvoicesTest {
     }
 
 
-    private List<Invoice> filterInvoicesFromCustomer(List<Invoice> invoices, Customer customer){
+    private List<Invoice> filterInvoicesFromCustomer(List<Invoice> invoices, Customer customer) {
         List<Invoice> result = new ArrayList<>();
-        for(Invoice invoice: invoices){
-            if(invoice.getCustomer() == customer){
+        for (Invoice invoice : invoices) {
+            if (invoice.getCustomer() == customer) {
                 result.add(invoice);
             }
         }
@@ -62,17 +63,17 @@ public class WorkingWithInvoicesTest {
 
     // Step 2b
     @Test
-    public void testFilterInvoicesEndingWith(){
+    public void testFilterInvoicesEndingWith() {
         List<Invoice> trainingInvoices = filterInvoicesEndingWith(invoices, "Training");
         assertThat(trainingInvoices, is(Arrays.asList(facebookInvoice1,
-                                                      oracleInvoice)));
+                oracleInvoice)));
     }
 
 
-    private List<Invoice> filterInvoicesEndingWith(List<Invoice> invoices, String suffix){
+    private List<Invoice> filterInvoicesEndingWith(List<Invoice> invoices, String suffix) {
         List<Invoice> result = new ArrayList<>();
-        for(Invoice invoice: invoices){
-            if(invoice.getName().endsWith(suffix)){
+        for (Invoice invoice : invoices) {
+            if (invoice.getName().endsWith(suffix)) {
                 result.add(invoice);
             }
         }
@@ -81,16 +82,16 @@ public class WorkingWithInvoicesTest {
 
     // Step 3
     @Test
-    public void testFilterInvoicesReuseCode(){
+    public void testFilterInvoicesReuseCode() {
         List<Invoice> oracleInvoices = filterInvoicesBad(invoices, Customer.ORACLE, "", true);
         assertThat(oracleInvoices, is(Arrays.asList(oracleInvoice)));
     }
 
-    private List<Invoice> filterInvoicesBad(List<Invoice> invoices, Customer customer, String suffix, boolean flag){
+    private List<Invoice> filterInvoicesBad(List<Invoice> invoices, Customer customer, String suffix, boolean flag) {
         List<Invoice> result = new ArrayList<>();
-        for(Invoice invoice: invoices){
-            if((flag && invoice.getCustomer() == customer)
-               || (!flag && invoice.getName().endsWith(suffix))){
+        for (Invoice invoice : invoices) {
+            if ((flag && invoice.getCustomer() == customer)
+                    || (!flag && invoice.getName().endsWith(suffix))) {
                 result.add(invoice);
             }
         }
@@ -98,26 +99,26 @@ public class WorkingWithInvoicesTest {
     }
 
     // Step 4
-    public void testFilterWithObjects(){
+    public void testFilterWithObjects() {
         List<Invoice> specificInvoices = filterInvoices(invoices, new FacebookTraining());
         assertThat(specificInvoices, is(Arrays.asList(facebookInvoice2)));
     }
 
-    private List<Invoice> filterInvoices(List<Invoice> invoices, InvoicePredicate p){
+    private List<Invoice> filterInvoices(List<Invoice> invoices, InvoicePredicate p) {
         List<Invoice> result = new ArrayList<>();
-        for(Invoice invoice: invoices){
-            if(p.test(invoice)){
+        for (Invoice invoice : invoices) {
+            if (p.test(invoice)) {
                 result.add(invoice);
             }
         }
         return result;
     }
 
-    interface InvoicePredicate{
+    interface InvoicePredicate {
         boolean test(Invoice invoice);
     }
 
-    private class FacebookTraining implements InvoicePredicate{
+    private class FacebookTraining implements InvoicePredicate {
         @Override
         public boolean test(Invoice invoice) {
             return invoice.getCustomer() == Customer.FACEBOOK && invoice.getName().endsWith("Training");
@@ -125,7 +126,7 @@ public class WorkingWithInvoicesTest {
     }
 
     // Step 5
-    public void testFilterWithMethodReferences(){
+    public void testFilterWithMethodReferences() {
         List<Invoice> oracleInvoices = filterInvoices(invoices, this::isOracleInvoice);
         assertThat(oracleInvoices, is(Arrays.asList(oracleInvoice)));
 
@@ -133,19 +134,19 @@ public class WorkingWithInvoicesTest {
         assertThat(oracleInvoices, is(Arrays.asList(facebookInvoice1, oracleInvoice)));
     }
 
-    public boolean isOracleInvoice(Invoice invoice){
+    public boolean isOracleInvoice(Invoice invoice) {
         return invoice.getCustomer() == Customer.ORACLE;
     }
 
-    public boolean isTrainingInvoice(Invoice invoice){
+    public boolean isTrainingInvoice(Invoice invoice) {
         return invoice.getName().endsWith("Training");
     }
 
     // Step 6
-    public void testFilterWithLambdas(){
+    public void testFilterWithLambdas() {
         List<Invoice> oracleInvoices =
                 filterInvoices(invoices,
-                               (Invoice invoice) -> invoice.getCustomer() == Customer.ORACLE);
+                        (Invoice invoice) -> invoice.getCustomer() == Customer.ORACLE);
         assertThat(oracleInvoices, is(Arrays.asList(oracleInvoice)));
 
         List<Invoice> trainingInvoices =

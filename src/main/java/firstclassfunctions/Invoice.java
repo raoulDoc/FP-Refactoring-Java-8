@@ -25,7 +25,9 @@ public class Invoice {
     }
 
 
-    enum Customer { ORACLE, GOOGLE, APPLE, FACEBOOK};
+    enum Customer {ORACLE, GOOGLE, APPLE, FACEBOOK}
+
+    ;
 
     @Override
     public boolean equals(Object o) {

@@ -8,15 +8,15 @@ public class Letter {
         this.message = message;
     }
 
-    public Letter addDefaultHeader(){
+    public Letter addDefaultHeader() {
         return new Letter("From her majesty:\n" + message);
     }
 
-    public Letter checkSpelling(){
+    public Letter checkSpelling() {
         return new Letter(message.replaceAll("FTW", "for the win"));
     }
 
-    public Letter addDefaultFooter(){
+    public Letter addDefaultFooter() {
         return new Letter(message + "\nKind regards");
     }
 

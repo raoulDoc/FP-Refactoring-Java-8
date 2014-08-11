@@ -26,7 +26,7 @@ public class ComposingTest {
     );
 
     @Test
-    public void testPredicateComposition(){
+    public void testPredicateComposition() {
 
         Predicate<Invoice> isFacebookInvoice = this::isFacebookInvoice;
 
@@ -49,21 +49,21 @@ public class ComposingTest {
         assertThat(facebookOrApple, is(Arrays.asList(appleInvoice, facebookInvoice1, facebookInvoice2)));
     }
 
-    public boolean isFacebookInvoice(Invoice invoice){
+    public boolean isFacebookInvoice(Invoice invoice) {
         return invoice.getCustomer() == Invoice.Customer.FACEBOOK;
     }
 
-    public boolean isAppleInvoice(Invoice invoice){
+    public boolean isAppleInvoice(Invoice invoice) {
         return invoice.getCustomer() == Invoice.Customer.APPLE;
     }
 
-    public boolean isTrainingInvoice(Invoice invoice){
+    public boolean isTrainingInvoice(Invoice invoice) {
         return invoice.getName().endsWith("Training");
     }
 
 
     @Test
-    public void testLetterPipeline(){
+    public void testLetterPipeline() {
         Function<Letter, Letter> addHeader = Letter::addDefaultHeader;
 
         Function<Letter, Letter> processingPipeline =
@@ -74,7 +74,6 @@ public class ComposingTest {
         assertEquals("From her majesty:\nJava 8 for the win!\nKind regards", result.getMessage());
 
     }
-
 
 
 }
