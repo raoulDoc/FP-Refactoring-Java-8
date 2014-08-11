@@ -1,4 +1,4 @@
-package firstclassfunctions;
+package com.java8training.firstclassfunctions;
 
 public class Letter {
 

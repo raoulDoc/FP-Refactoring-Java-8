@@ -1,4 +1,4 @@
-package firstclassfunctions;
+package com.java8training.firstclassfunctions;
 
 import org.junit.Test;
 
@@ -18,6 +18,7 @@ public class ComposingTest {
     private final Invoice facebookInvoice1 = new Invoice(4, "JavascriptTraining", Invoice.Customer.FACEBOOK);
     private final Invoice oracleInvoice = new Invoice(10, "Java8Training", Invoice.Customer.ORACLE);
     private final Invoice facebookInvoice2 = new Invoice(12, "PenTesting", Invoice.Customer.FACEBOOK);
+
     private List<Invoice> invoices = Arrays.asList(
             appleInvoice,
             facebookInvoice1,
@@ -61,7 +62,6 @@ public class ComposingTest {
         return invoice.getName().endsWith("Training");
     }
 
-
     @Test
     public void testLetterPipeline() {
         Function<Letter, Letter> addHeader = Letter::addDefaultHeader;
@@ -74,6 +74,5 @@ public class ComposingTest {
         assertEquals("From her majesty:\nJava 8 for the win!\nKind regards", result.getMessage());
 
     }
-
 
 }

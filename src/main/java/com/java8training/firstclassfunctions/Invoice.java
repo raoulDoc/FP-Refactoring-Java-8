@@ -1,4 +1,4 @@
-package firstclassfunctions;
+package com.java8training.firstclassfunctions;
 
 public class Invoice {
 
@@ -27,8 +27,6 @@ public class Invoice {
 
     enum Customer {ORACLE, GOOGLE, APPLE, FACEBOOK}
 
-    ;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,5 +47,14 @@ public class Invoice {
         result = 31 * result + name.hashCode();
         result = 31 * result + customer.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", customer=" + customer +
+                '}';
     }
 }
