@@ -1,8 +1,5 @@
 package firstclassfunctions;
 
-/**
- * Created by raoul-gabrielurma on 09/08/2014.
- */
 public class Invoice {
 
     private final int id;

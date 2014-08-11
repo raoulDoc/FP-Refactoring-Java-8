@@ -12,9 +12,6 @@ import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-/**
- * Created by raoul-gabrielurma on 10/08/2014.
- */
 public class ComposingTest {
 
     private final Invoice appleInvoice = new Invoice(1, "DesignConsulting", Invoice.Customer.APPLE);

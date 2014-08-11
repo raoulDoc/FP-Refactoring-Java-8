@@ -9,9 +9,6 @@ import static firstclassfunctions.Invoice.Customer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-/**
- * Created by raoul-gabrielurma on 09/08/2014.
- */
 public class WorkingWithInvoicesTest {
 
     private final Invoice appleInvoice = new Invoice(1, "DesignConsulting", Invoice.Customer.APPLE);

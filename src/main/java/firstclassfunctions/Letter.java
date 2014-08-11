@@ -1,8 +1,5 @@
 package firstclassfunctions;
 
-/**
- * Created by raoul-gabrielurma on 10/08/2014.
- */
 public class Letter {
 
     private final String message;
