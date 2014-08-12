@@ -1,20 +1,20 @@
 package com.java8training.firstclassfunctions;
 
-        import org.junit.Test;
+import org.junit.Test;
 
-        import java.util.function.DoubleUnaryOperator;
+import java.util.function.*;
 
-        import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class CurryingTest {
 
     // (double, double, double) -> double
-    static double convert(double amount, double factor, double base) {
+    double convert(double amount, double factor, double base) {
         return amount * factor + base;
     }
 
     // (double, double) -> (double -> double)
-    static DoubleUnaryOperator convert(double factor, double base) {
+    DoubleUnaryOperator convert(double factor, double base) {
         return amount -> amount * factor + base;
     }
 
@@ -40,6 +40,32 @@ public class CurryingTest {
 
         result = convertCtoF.applyAsDouble(-40);
         assertEquals(result, -40, 0.0);
+    }
+
+    private IntFunction<IntUnaryOperator> curryInt(IntBinaryOperator biFunction) {
+        return f -> s -> biFunction.applyAsInt(f, s);
+    }
+
+    @Test
+    public void intCurrying() {
+        IntFunction<IntUnaryOperator> add = curryInt((f, s) -> f + s);
+
+        int result = add.apply(1)
+                        .applyAsInt(2);
+        assertEquals(3, result);
+    }
+
+    private <F,S,R> Function<F, Function<S, R>> curry(BiFunction<F, S, R> biFunction) {
+        return f -> s -> biFunction.apply(f, s);
+    }
+
+    @Test
+    public void generalCurrying() {
+        Function<Integer, Function<Integer, Integer>> add = curry((f, s) -> f + s);
+
+        int result = add.apply(1)
+                        .apply(2);
+        assertEquals(3, result);
     }
 
 }
